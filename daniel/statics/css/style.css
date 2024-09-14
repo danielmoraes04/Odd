@@ -4,14 +4,3 @@
     h1 {
         background-color: white;
     }
-    .botao {
-        background-color: black;
-        color: white;
-        font-size: 30px;
-        font-family: "black";
-        height: 50px;
-        width: 150px;
-        border: 10px solid red;
-        border-radius: 15px;
-
-    }

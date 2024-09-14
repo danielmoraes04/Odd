@@ -1,15 +1,86 @@
 {% extends 'menu.html' %}
 {% load static %}
-{% block title %}Tela Principal{% endblock %}
+{% block title %}Jogos do Dia{% endblock %}
 {% block body %}
-<div class="text-center">
-    <h1>PAPÃO DA CURUZU</h1>
-    <h2>Maior do Norte</h2>
-    <a href="https://www.paysandu.com.br/home">Site do Paysandu</a>
-    <br>
-    <img src="https://upload.wikimedia.org/wikipedia/pt/6/6c/Paysandu_SC.png" height="300px">
-<div style="background-color: lightblue">
-<div class="text-center" style="background-color: lightblue; padding: 50px 0;">
-</div>
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Jogos do Dia</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Campeonato</th>
+                    <th scope="col">Jogo</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Local de Transmissão</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Brasileirão Série A -->
+                <tr>
+                    <td rowspan="2">Brasileirão Série A</td>
+                    <td>Palmeiras <img src="{% static 'img/Palmeiras.png' %}" height="20px"> x <img src="{% static 'img/Flamengo.png' %}" height="20px"> Flamengo</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/SporTV.png' %}" height="20px"></a></td>
+                </tr>
+                <tr>
+                    <td>Grêmio <img src="{% static 'img/gremio.png' %}" height="20px"> x <img src="{% static 'img/Botafogo.png' %}" height="20px"> Botafogo</td>
+                    <td>18:30</td>
+                    <td><img src="{% static 'img/premiere.png' %}" height="20px"></a></td>
+                </tr>
+
+                <!-- Premier League -->
+                <tr>
+                    <td rowspan="2">Premier League</td>
+                    <td>Chelsea <img src="{% static 'img/Chelsea.png' %}" height="20px"> x <img src="{% static 'img/ManchesterC.png' %}" height="20px"> Manchester City</td>
+                    <td>15:00</td>
+                    <td><img src="{% static 'img/ESPN.png' %}" height="30px"></a></td>
+                </tr>
+                <tr>
+                    <td>Liverpool <img src="{% static 'img/Liverpool.png' %}" height="20px"> x <img src="{% static 'img/Arsenal.png' %}" height="20px"> Arsenal</td>
+                    <td>17:30</td>
+                    <td><img src="{% static 'img/star.png' %}" height="20px"></a></td>
+                </tr>
+
+                <!-- La Liga -->
+                <tr>
+                    <td>La Liga</td>
+                    <td>Real Madrid <img src="{% static 'img/RealMadrid.png' %}" height="20px"> x <img src="{% static 'img/Barcelona.png' %}" height="20px"> Barcelona</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/cazetv.png' %}" height="30px"></a></td>
+                </tr>
+                <!-- Italiano -->
+
+                <tr>
+                    <td>Serie A</td>
+                    <td>Juventus <img src="{% static 'img/Juventus.png' %}" height="20px"> x <img src="{% static 'img/Lazio.png' %}" height="20px"> Lazio</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/globo.png' %}" height="30px"></a></td>
+                </tr>
+                 <!-- Italiano -->
+
+                <tr>
+                    <td>Ligue 1</td>
+                    <td>PSG <img src="{% static 'img/PSG.png' %}" height="20px"> x <img src="{% static 'img/nice.png' %}" height="20px"> Nice</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/Amazon.png' %}" height="30px"></a></td>
+                </tr>
+
+                <tr>
+                    <td>Brasileirão Série B</td>
+                    <td>Paysandu <img src="{% static 'img/Paysandu.png' %}" height="20px"> x <img src="{% static 'img/PontePreta.png' %}" height="20px"> Ponte Preta</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/ESPN2.png' %}" height="20px"></a></td>
+                </tr>
+
+                <tr>
+                    <td>Bundesliga</td>
+                    <td>Bayer Leverkusen <img src="{% static 'img/BayerLev.png' %}" height="20px"> x <img src="{% static 'img/Dortmund.png' %}" height="20px"> Borussia Dortmund</td>
+                    <td>16:00</td>
+                    <td><img src="{% static 'img/SBT.png' %}" height="30px"></a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
