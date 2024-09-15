@@ -1,6 +1,113 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Login{% endblock %}
-{% block body %}
-<h1>LOGIN</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url("https://cariricomoeuvejo.com.br/wp-content/webp-express/webp-images/uploads/2024/07/agenda-esporte.jpg.webp") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #000;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .actions button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .actions a {
+            color: #000;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .create-account {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .create-account a {
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>LOGIN</h2>
+        <form>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Digite o e-mail">
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite a sua senha">
+            </div>
+            <div class="actions">
+                <button type="submit">Entrar</button>
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+            <div class="create-account">
+                <a href="#">Criar uma conta</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
