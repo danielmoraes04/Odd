@@ -1,8 +1,14 @@
 from django.urls import path
-from .views import odd, login, Brasileirão
+from .views import odd, login, Brasileirão, budesliga, BrasB, espanhol, frances, ingles, italiano
 
 urlpatterns = [
-    path('', odd, name='odd'),
+    path('agenda', odd, name='odd'),
     path('login',login, name='login'),
-    path('Brasileirão',Brasileirão, name='Brasileirão'),
+    path('brasileirão',Brasileirão, name='Brasileirão'),
+    path('bundesliga',budesliga, name='budesliga'),
+    path('brasileirãosérieb',BrasB, name='BrasB'),
+    path('laliga',espanhol, name='espanhol'),
+    path('ligue1',frances, name='frances'),
+    path('premierleague',ingles, name='ingles'),
+    path('seriea', italiano, name='italiano'),
 ]
