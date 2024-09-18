@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block menu %}
-<style>
-  body {
-    padding-top: 30px;
-  }
-</style>
     <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-fluid position-relative">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -28,7 +23,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Brasileirão' %}">Campeonato Brasileiro</a>
               </li>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'BrasB' %}">Campeonato Brasileiro Série B</a>
               </li>
@@ -41,7 +35,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ingles' %}">Campeonato Inglês</a>
               </li>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'italiano' %}">Campeonato Italiano</a>
               </li>
@@ -53,9 +46,9 @@
 {% endblock %}
 
 {% block footer %}
-
-<footer class="bg-dark text-white text-center py-4 fixed-bottom">
-  <p>&copy; Todos direitos reservados</p>
+<footer >
+  <p>&copy; |Todos direitos reservados</p>
 </footer>
 {% endblock %}
+
 

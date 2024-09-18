@@ -4,75 +4,93 @@
 {% block body %}
 <div class="container mt-5">
     <h3 class="text-center mb-4">Agenda do Dia</h3>
+
+    <!-- Campo de pesquisa -->
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Pesquisar pelo nome do time" onkeyup="searchGames()">
+
     <div class="table-responsive">
-        <table class="table table-bordered text-center">
+        <h5>Favoritos</h5>
+        <table class="table table-bordered text-center" id="favoritosTable">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Campeonato</th>
                     <th scope="col">Jogo</th>
                     <th scope="col">Horário</th>
                     <th scope="col">Local de Transmissão</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="favoritosBody">
+                <tr>
+                    <td colspan="5">Nenhum jogo favoritado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <h5>Todos os Jogos</h5>
+        <table class="table table-bordered text-center" id="jogosTable">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Campeonato</th>
+                    <th scope="col">Jogo</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Local de Transmissão</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="jogosBody">
                 <!-- Brasileirão Série A -->
                 <tr>
-                    <td rowspan="2">
-                        <a href="{% url 'Brasileirão' %}" class="text-success text-decoration-none border-bottom border-success">Brasileirão Série A</a>
-                    </td>
+                    <td><a href="{% url 'Brasileirão' %}" class="text-success text-decoration-none border-bottom border-success">Brasileirão Série A</a></td>
                     <td>Palmeiras <img src="{% static 'img/Palmeiras.png' %}" height="20px"> x <img src="{% static 'img/Flamengo.png' %}" height="20px"> Flamengo</td>
                     <td>16:00</td>
-                    <td><img src="{% static 'img/SporTV.png' %}" height="20px"></a></td>
+                    <td>
+                        <a href="https://vitrine.globo.com/globoplay?origemId=2143&utm_source=google&utm_medium=cpc&utm_campaign=aq_google_vitrine_perf_conv_search_cpc_web_tier2_insti_insti_na_geral&utm_content=insti-na-0-search-na-assinar-geral-anual-p3990-tier2&gad_source=1&gclid=CjwKCAjw0aS3BhA3EiwAKaD2ZQQWvG1sq5ieZ6660ljVDfzzm7VCLj6FxeRTvz8lFpVWnl6Tl1h31xoCrYEQAvD_BwE&gclsrc=aw.ds" target="_blank">
+                        <img src="{% static 'img/SporTV.png' %}" height="20px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
                 </tr>
                 <tr>
+                    <td><a href="{% url 'Brasileirão' %}" class="text-success text-decoration-none border-bottom border-success">Brasileirão Série A</a></td>
                     <td>Grêmio <img src="{% static 'img/gremio.png' %}" height="20px"> x <img src="{% static 'img/Botafogo.png' %}" height="20px"> Botafogo</td>
                     <td>18:30</td>
-                    <td><img src="{% static 'img/premiere.png' %}" height="20px"></a></td>
+                    <td>
+                        <a href="https://premiere.globo.com/?origemId=2935" target="_blank">
+                        <img src="{% static 'img/premiere.png' %}" height="20px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
                 </tr>
 
                 <!-- Premier League -->
                 <tr>
-                    <td rowspan="2">
-                        <a href="{% url 'ingles' %}" class="text-success text-decoration-none border-bottom border-success">Premier League</a>
-                    </td>
+                    <td><a href="{% url 'ingles' %}" class="text-success text-decoration-none border-bottom border-success">Premier League</a></td>
                     <td>Chelsea <img src="{% static 'img/Chelsea.png' %}" height="20px"> x <img src="{% static 'img/ManchesterC.png' %}" height="20px"> Manchester City</td>
                     <td>15:00</td>
-                    <td><img src="{% static 'img/ESPN.png' %}" height="30px"></a></td>
+                    <td>
+                        <a href="https://www.disneyplus.com/pt-br?cid=DSS-Search-Google-71700000119055297-&s_kwcid=AL!8468!3!702022051324!e!!g!!espn&gad_source=1&gclid=CjwKCAjw0aS3BhA3EiwAKaD2ZZNPumG2mAWp0BLdw1XrgxRWZVqqLPj67PfOedmH97QBlMBhuqOgABoCfi4QAvD_BwE&gclsrc=aw.ds" target="_blank">
+                        <img src="{% static 'img/ESPN.png' %}" height="30px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
                 </tr>
                 <tr>
+                    <td><a href="{% url 'ingles' %}" class="text-success text-decoration-none border-bottom border-success">Premier League</a></td>
                     <td>Liverpool <img src="{% static 'img/Liverpool.png' %}" height="20px"> x <img src="{% static 'img/Arsenal.png' %}" height="20px"> Arsenal</td>
                     <td>17:30</td>
-                    <td><img src="{% static 'img/star.png' %}" height="20px"></a></td>
-                </tr>
-
-                <!-- La Liga -->
-                <tr>
                     <td>
-                        <a href="{% url 'espanhol' %}" class="text-success text-decoration-none border-bottom border-success">La Liga</a>
-                    </td>
-                    <td>Real Madrid <img src="{% static 'img/RealMadrid.png' %}" height="20px"> x <img src="{% static 'img/Barcelona.png' %}" height="20px"> Barcelona</td>
-                    <td>16:00</td>
-                    <td><img src="{% static 'img/cazetv.png' %}" height="30px"></a></td>
-                </tr>
-
-                <!-- Série A -->
-                <tr>
+                        <a href="https://www.paramountplus.com/br/?&ftag=IPP-02-10aab2a&gad_source=1&gclid=CjwKCAjw0aS3BhA3EiwAKaD2ZUdBivOXwsxkGDmw_fhS5v_OP4jWHAGq4Cxu_nNoCClb6fCnNuqIxhoCHn4QAvD_BwE&gclsrc=aw.ds" target="_blank">
+                        <img src="{% static 'img/paramount.png' %}" height="40px"></a></td>
                     <td>
-                        <a href="{% url 'italiano' %}" class="text-success text-decoration-none border-bottom border-success">Serie A</a>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
                     </td>
-                    <td>Juventus <img src="{% static 'img/Juventus.png' %}" height="20px"> x <img src="{% static 'img/Lazio.png' %}" height="20px"> Lazio</td>
-                    <td>16:00</td>
-                    <td><img src="{% static 'img/globo.png' %}" height="30px"></a></td>
-                </tr>
-
-                <!-- Ligue 1 -->
-                <tr>
-                    <td>
-                        <a href="{% url 'frances' %}" class="text-success text-decoration-none border-bottom border-success">Ligue 1</a>
-                    </td>
-                    <td>PSG <img src="{% static 'img/PSG.png' %}" height="20px"> x <img src="{% static 'img/nice.png' %}" height="20px"> Nice</td>
-                    <td>16:00</td>
-                    <td><img src="{% static 'img/Amazon.png' %}" height="30px"></a></td>
                 </tr>
 
                 <!-- Brasileirão Série B -->
@@ -82,20 +100,131 @@
                     </td>
                     <td>Paysandu <img src="{% static 'img/Paysandu.png' %}" height="20px"> x <img src="{% static 'img/PontePreta.png' %}" height="20px"> Ponte Preta</td>
                     <td>16:00</td>
-                    <td><img src="{% static 'img/ESPN2.png' %}" height="20px"></a></td>
+                    <td>
+                        <a href="https://www.disneyplus.com/pt-br?cid=DSS-Search-Google-71700000119055297-&s_kwcid=AL!8468!3!702022051324!b!!g!!espn&gad_source=1&gclid=CjwKCAjw0aS3BhA3EiwAKaD2ZWff40jG0qW014Rm38kyN3z_hOS1KBmJFnXoiMSJotGb3W1V8hxHxBoCYC0QAvD_BwE&gclsrc=aw.ds" target="_blank">
+                        <img src="{% static 'img/ESPN2.png' %}" height="20px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
                 </tr>
 
-                <!-- Bundesliga -->
+                                <!-- Série A -->
                 <tr>
+                    <td>
+                        <a href="{% url 'italiano' %}" class="text-success text-decoration-none border-bottom border-success">Serie A</a>
+                    </td>
+                    <td>Juventus <img src="{% static 'img/Juventus.png' %}" height="20px"> x <img src="{% static 'img/Lazio.png' %}" height="20px"> Lazio</td>
+                    <td>16:00</td>
+                    <td>
+                        <a href="https://vitrine.globo.com/globoplay?origemId=2143&gad_source=1&gclid=CjwKCAjw0aS3BhA3EiwAKaD2ZU2h6Fn8tfFpoILKsdvI3IJmNNW7su5r6khDbiTJxgA8y056VA3-qRoC_IQQAvD_BwE&gclsrc=aw.ds" target="_blank">
+                        <img src="{% static 'img/globo.png' %}" height="30px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
+                </tr>
+
+                <!-- La Liga -->
+                <tr>
+                    <td> <a href="{% url 'espanhol' %}" class="text-success text-decoration-none border-bottom border-success">La Liga</a></td>
+                    <td>Real Madrid <img src="{% static 'img/RealMadrid.png' %}" height="20px"> x <img src="{% static 'img/Barcelona.png' %}" height="20px"> Barcelona</td>
+                    <td>16:00</td>
+                    <td>
+                        <a href="https://www.youtube.com/cazetv" target="_blank">
+                        <img src="{% static 'img/cazetv.png' %}" height="30px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
+                </tr>
+
                     <td>
                         <a href="{% url 'budesliga' %}" class="text-success text-decoration-none border-bottom border-success">Bundesliga</a>
                     </td>
                     <td>Bayer Leverkusen <img src="{% static 'img/BayerLev.png' %}" height="20px"> x <img src="{% static 'img/Dortmund.png' %}" height="20px"> Borussia Dortmund</td>
                     <td>16:00</td>
-                    <td><img src="{% static 'img/SBT.png' %}" height="30px"></a></td>
+                    <td>
+                        <a href="https://www.mais.sbt.com.br/catalog" target="_blank">
+                        <img src="{% static 'img/SBT.png' %}" height="30px"></a></td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
+                </tr>
+
+                <!-- Ligue 1 -->
+                <tr>
+                    <td> <a href="{% url 'frances' %}" class="text-success text-decoration-none border-bottom border-success">Ligue 1</a></td>
+                    <td>PSG <img src="{% static 'img/PSG.png' %}" height="20px"> x <img src="{% static 'img/nice.png' %}" height="20px"> Nice</td>
+                    <td>16:00</td>
+                    <td>
+                        <a href="https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root?_encoding=UTF8&language=pt_br" target="_blank">
+                         <img src="{% static 'img/Amazon.png' %}" height="30px">
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                        <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+function favoritarJogo(button) {
+    // Obtendo a linha do jogo atual
+    var row = button.closest('tr');
+    var favoritosTable = document.getElementById('favoritosBody');
+
+    // Verificando se já existe um favorito
+    if (favoritosTable.children[0] && favoritosTable.children[0].children[0].colSpan == 5) {
+        favoritosTable.innerHTML = ''; // Remove o texto "Nenhum jogo favoritado."
+    }
+
+    // Clonando a linha do jogo para adicionar à tabela de favoritos
+    var newRow = row.cloneNode(true);
+
+    // Substituir o botão "Favoritar" por "Deletar" nos favoritos
+    newRow.querySelector('.btn-warning').remove();
+    newRow.querySelector('.btn-danger').onclick = function() {
+        newRow.remove();
+        if (favoritosTable.children.length == 0) {
+            favoritosTable.innerHTML = '<tr><td colspan="5">Nenhum jogo favoritado.</td></tr>';
+        }
+    };
+
+    // Adicionando a nova linha no topo da lista de favoritos
+    favoritosTable.insertBefore(newRow, favoritosTable.firstChild);
+}
+
+function deletarJogo(button) {
+    // Removendo a linha do jogo da tabela
+    var row = button.closest('tr');
+    row.remove();
+}
+
+function searchGames() {
+    // Obtendo o valor da pesquisa
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toLowerCase();
+    var table = document.getElementById('jogosTable');
+    var tr = table.getElementsByTagName('tr');
+
+    // Iterando sobre as linhas e ocultando as que não correspondem à pesquisa
+    for (var i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName('td')[1]; // Coluna do nome do jogo
+        if (td) {
+            var txtValue = td.textContent || td.innerText;
+            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
 {% endblock %}
