@@ -9,7 +9,7 @@
     <input type="text" id="searchInput" class="form-control mb-4" placeholder="Pesquisar pelo nome do time" onkeyup="searchGames()">
 
     <div class="table-responsive">
-        <h5>Favoritos</h5>
+        <h5>Meus Favoritos</h5>
         <table class="table table-bordered text-center" id="favoritosTable">
             <thead class="table-dark">
                 <tr>
@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody id="jogosBody">
-                <!-- Brasileirão Série A -->
+
                 <tr>
                     <td><a href="{% url 'Brasileirão' %}" class="text-success text-decoration-none border-bottom border-success">Brasileirão Série A</a></td>
                     <td>Palmeiras <img src="{% static 'img/Palmeiras.png' %}" height="20px"> x <img src="{% static 'img/Flamengo.png' %}" height="20px"> Flamengo</td>
@@ -67,7 +67,6 @@
                     </td>
                 </tr>
 
-                <!-- Premier League -->
                 <tr>
                     <td><a href="{% url 'ingles' %}" class="text-success text-decoration-none border-bottom border-success">Premier League</a></td>
                     <td>Chelsea <img src="{% static 'img/Chelsea.png' %}" height="20px"> x <img src="{% static 'img/ManchesterC.png' %}" height="20px"> Manchester City</td>
@@ -93,7 +92,6 @@
                     </td>
                 </tr>
 
-                <!-- Brasileirão Série B -->
                 <tr>
                     <td>
                         <a href="{% url 'BrasB' %}" class="text-success text-decoration-none border-bottom border-success">Brasileirão Série B</a>
@@ -109,7 +107,6 @@
                     </td>
                 </tr>
 
-                                <!-- Série A -->
                 <tr>
                     <td>
                         <a href="{% url 'italiano' %}" class="text-success text-decoration-none border-bottom border-success">Serie A</a>
@@ -125,7 +122,6 @@
                     </td>
                 </tr>
 
-                <!-- La Liga -->
                 <tr>
                     <td> <a href="{% url 'espanhol' %}" class="text-success text-decoration-none border-bottom border-success">La Liga</a></td>
                     <td>Real Madrid <img src="{% static 'img/RealMadrid.png' %}" height="20px"> x <img src="{% static 'img/Barcelona.png' %}" height="20px"> Barcelona</td>
@@ -153,7 +149,6 @@
                     </td>
                 </tr>
 
-                <!-- Ligue 1 -->
                 <tr>
                     <td> <a href="{% url 'frances' %}" class="text-success text-decoration-none border-bottom border-success">Ligue 1</a></td>
                     <td>PSG <img src="{% static 'img/PSG.png' %}" height="20px"> x <img src="{% static 'img/nice.png' %}" height="20px"> Nice</td>

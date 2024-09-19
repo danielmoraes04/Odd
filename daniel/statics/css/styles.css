@@ -21,4 +21,13 @@ footer {
     color: white;
     text-align: center;
     padding: 16px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Para garantir que o footer sempre esteja na parte inferior da página */
+body {
+    margin: 0;
+    padding-bottom: 50px; /* Ajuste para o tamanho do footer */
 }
