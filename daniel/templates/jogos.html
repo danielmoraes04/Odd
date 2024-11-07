@@ -1,0 +1,15 @@
+{% extends 'menu.html' %}
+{% load static %}
+{% block title %}Criar Novo Jogo{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Criar Novo Jogo</h3>
+
+    <!-- Formulário para adicionar novos jogos -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Adicionar Jogo</button>
+    </form>
+</div>
+{% endblock %}

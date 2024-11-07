@@ -1,0 +1,69 @@
+{% extends 'menu.html' %}
+{% load static %}
+{% block title %}Jogos Cadastrados{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Jogos Cadastrados</h3>
+
+    <!-- Campo de pesquisa -->
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Pesquisar pelo nome do time" onkeyup="searchGames()">
+
+    <div class="table-responsive">
+        <h5>Todos os Jogos</h5>
+        <table class="table table-bordered text-center" id="jogosTable">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Campeonato</th>
+                    <th scope="col">Jogo</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Local de Transmissão</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="jogosBody">
+                {% for jogo in jogos %}
+                    <tr>
+                        <td>{{ jogo.campeonato }}</td>
+                        <td>{{ jogo.time_casa }} x {{ jogo.time_visitante }}</td>
+                        <td>{{ jogo.horario }}</td>
+                        <td>
+                            <!-- Tornando o local de transmissão um link clicável -->
+                            <a href="{{ jogo.link_transmissao }}" target="_blank">{{ jogo.local_transmissao }}</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning" onclick="favoritarJogo(this)">Favoritar</button>
+                            <button class="btn btn-danger" onclick="deletarJogo(this)">Deletar</button>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Nenhum jogo registrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Função de pesquisa para filtrar os jogos
+    function searchGames() {
+        var input = document.getElementById('searchInput');
+        var filter = input.value.toLowerCase();
+        var table = document.getElementById('jogosTable');
+        var tr = table.getElementsByTagName('tr');
+
+        for (var i = 0; i < tr.length; i++) {
+            var td = tr[i].getElementsByTagName('td')[1]; // Coluna do nome do jogo
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

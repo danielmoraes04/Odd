@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .views import odd, login, Brasileirão, budesliga, BrasB, espanhol, frances, ingles, italiano
 
 urlpatterns = [
@@ -11,4 +12,6 @@ urlpatterns = [
     path('ligue1',frances, name='frances'),
     path('premierleague',ingles, name='ingles'),
     path('seriea', italiano, name='italiano'),
+    path('jogos', views.jogos_view, name='jogos'),
+    path('visualizar', views.visualizar_jogos, name='Visualizar')
 ]
