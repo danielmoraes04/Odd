@@ -7,3 +7,4 @@ class Jogo(models.Model):
     horario = models.TimeField()
     local_transmissao = models.CharField(max_length=255)
     link_transmissao = models.URLField(max_length=200)
+

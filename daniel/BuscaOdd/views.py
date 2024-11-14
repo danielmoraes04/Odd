@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponseNotAllowed
 from .models import Jogo
 from .forms import JogoForm
-from django.http import JsonResponse
+import logging
 def jogos_view(request):
     jogos = Jogo.objects.all()  # Obtém todos os jogos armazenados no banco de dados
 
@@ -19,6 +20,16 @@ def visualizar_jogos(request):
     jogos = Jogo.objects.all()  # Obter todos os jogos cadastrados
     return render(request, 'visualizar_jogos.html', {'jogos': jogos})
 
+
+def deletar_jogo(request, id):
+    if request.method == 'DELETE':  # Verifica se é uma requisição DELETE
+        try:
+            jogo = Jogo.objects.get(id=id)  # Busca o jogo pelo ID
+            jogo.delete()  # Exclui o jogo
+            return JsonResponse({"message": "Jogo excluído com sucesso."}, status=200)
+        except Jogo.DoesNotExist:
+            return JsonResponse({"error": "Jogo não encontrado."}, status=404)
+    return HttpResponseNotAllowed(['DELETE'])
 
 # Create your views here.
 def odd(request):

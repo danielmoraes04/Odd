@@ -1,4 +1,5 @@
 from django.urls import path
+from .api.viewsets import JogoViewSets
 from . import views
 from .views import odd, login, Brasileirão, budesliga, BrasB, espanhol, frances, ingles, italiano
 
@@ -13,5 +14,8 @@ urlpatterns = [
     path('premierleague',ingles, name='ingles'),
     path('seriea', italiano, name='italiano'),
     path('jogos', views.jogos_view, name='jogos'),
-    path('visualizar', views.visualizar_jogos, name='Visualizar')
+    path('visualizar', views.visualizar_jogos, name='Visualizar'),
+    path('deletar-jogo/<int:id>/', views.deletar_jogo, name='deletar_jogo'),
+    path('api/jogo', JogoViewSets.as_view(), name='jogo-list'),
+    path('api/jogo/<str:id>',JogoViewSets.as_view(),name='jogo-detalhe')
 ]
