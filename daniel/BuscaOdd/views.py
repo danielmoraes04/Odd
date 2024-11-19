@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseNotAllowed
 from .models import Jogo
+from .models import TabelaBrasileirao
+from django.db.models import F
+from .forms import TabelaBrasileiraoForm
 from .forms import JogoForm
 import logging
 def jogos_view(request):
@@ -30,6 +33,42 @@ def deletar_jogo(request, id):
         except Jogo.DoesNotExist:
             return JsonResponse({"error": "Jogo não encontrado."}, status=404)
     return HttpResponseNotAllowed(['DELETE'])
+
+
+def cadastrar_tabela(request):
+    if request.method == "POST":
+        forms = []
+        for i in range(1, 21):  # Gerar múltiplos formulários
+            form = TabelaBrasileiraoForm(request.POST, prefix=f'time_{i}')
+            if form.is_valid():
+                forms.append(form)
+            else:
+                print(f"Erro no formulário {i}: {form.errors}")
+
+        if forms:
+            try:
+                for form in forms:
+                    form.save()  # Tenta salvar o formulário
+                return redirect('mostrar_tabela')  # Redireciona para a página de exibição da tabela
+            except Exception as e:
+                print(f"Erro ao salvar os dados: {e}")  # Captura e imprime o erro
+        else:
+            print("Nenhum formulário válido foi enviado.")
+
+    else:
+        forms = [TabelaBrasileiraoForm(prefix=f'time_{i}', initial={'posicao': i}) for i in range(1, 21)]
+
+    return render(request, 'cadastrar_tabela.html', {'forms': forms})
+
+
+def mostrar_tabela(request):
+    # Calcula os pontos dinamicamente e ordena os resultados pela quantidade de pontos
+    tabela = TabelaBrasileirao.objects.annotate(
+        pontos=F('vitorias') * 3 + F('empates')
+    ).order_by('-pontos')  # Ordena pela quantidade de pontos em ordem decrescente
+
+    return render(request, 'mostrar_tabela.html', {'tabela': tabela})
+
 
 # Create your views here.
 def odd(request):

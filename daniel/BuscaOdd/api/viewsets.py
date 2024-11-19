@@ -4,8 +4,8 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 from BuscaOdd.api import serializer
-from BuscaOdd.models import Jogo
-from BuscaOdd.api.serializer import JogoSerializer
+from BuscaOdd.models import Jogo, TabelaBrasileirao
+from BuscaOdd.api.serializer import JogoSerializer, TabelaBrasileiraoSerializer
 
 class JogoViewSets(APIView):
     def get(self, request, id=None):
@@ -37,3 +37,21 @@ class JogoViewSets(APIView):
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+class TabelaBrasileiraoViewSets(APIView):
+
+    def get(self, request, id=None):
+        if id:
+            tabela = get_object_or_404(TabelaBrasileirao, id=id)
+            serializer = TabelaBrasileiraoSerializer(tabela)
+            return Response(serializer.data)
+        items = TabelaBrasileirao.objects.all()
+        serializer = TabelaBrasileiraoSerializer(items, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TabelaBrasileiraoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
