@@ -57,7 +57,7 @@ class TabelaBrasileiraoViewSets(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, id):
-        item = get_object_or_404(Jogo,id=id)
+        item = get_object_or_404(TabelaBrasileirao,id=id)
         serializer = TabelaBrasileiraoSerializer(item, data=request.data)
         if serializer.is_valid():
             serializer.save()
