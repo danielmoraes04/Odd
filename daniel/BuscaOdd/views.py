@@ -61,11 +61,18 @@ def cadastrar_tabela(request):
     return render(request, 'cadastrar_tabela.html', {'forms': forms})
 
 
+
 def mostrar_tabela(request):
-    # Calcula os pontos dinamicamente e ordena os resultados pela quantidade de pontos
-    tabela = TabelaBrasileirao.objects.annotate(
-        pontos=F('vitorias') * 3 + F('empates')
-    ).order_by('-pontos')  # Ordena pela quantidade de pontos em ordem decrescente
+    # Calcula os pontos e ordena pela quantidade de pontos
+    tabela = list(
+        TabelaBrasileirao.objects.annotate(
+            pontos=F('vitorias') * 3 + F('empates')
+        ).order_by('-pontos')
+    )
+
+    # Atualiza a posição dinamicamente
+    for index, time in enumerate(tabela, start=1):
+        time.posicao = index
 
     return render(request, 'mostrar_tabela.html', {'tabela': tabela})
 

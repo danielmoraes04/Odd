@@ -17,5 +17,6 @@ class TabelaBrasileirao(models.Model):
     empates = models.IntegerField()
     derrotas = models.IntegerField()
 
+    @property
     def calcular_pontos(self):
         return self.vitorias * 3 + self.empates

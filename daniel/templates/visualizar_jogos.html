@@ -17,7 +17,6 @@
                     <th scope="col">Jogo</th>
                     <th scope="col">Horário</th>
                     <th scope="col">Local de Transmissão</th>
-                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody id="jogosBody">
@@ -28,10 +27,6 @@
                         <td>{{ jogo.horario }}</td>
                         <td>
                             <a href="{{ jogo.link_transmissao }}" target="_blank">{{ jogo.local_transmissao }}</a>
-                        </td>
-                        <td>
-                            <!-- Botão para excluir o jogo -->
-                            <button class="btn btn-danger" data-id="{{ jogo.id }}" onclick="deletarJogo(this)">Deletar</button>
                         </td>
                     </tr>
                 {% empty %}
@@ -65,33 +60,6 @@
         }
     }
 
-    // Função para excluir o jogo
-    function deletarJogo(button) {
-        var jogoId = button.getAttribute("data-id");  // Pega o ID do jogo do atributo data-id
-        console.log('Excluindo jogo com ID: ' + jogoId);  // Verifique no console
-
-        // Confirmação antes de excluir
-        if (confirm("Tem certeza que deseja excluir este jogo?")) {
-            fetch(`/deletar-jogo/${jogoId}/`, {
-                method: 'DELETE',  // Usando o método DELETE
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken()  // Inclui o token CSRF para segurança
-                },
-            })
-            .then(response => {
-                if (response.ok) {
-                    button.closest("tr").remove();  // Remove a linha da tabela
-                    alert("Jogo excluído com sucesso.");
-                } else {
-                    alert("Erro ao excluir o jogo. Tente novamente.");
-                }
-            })
-            .catch(error => {
-                alert("Erro ao excluir o jogo: " + error);
-            });
-        }
-    }
 
     // Função para pegar o token CSRF da página
     function getCSRFToken() {
